@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    {% block style %}
+        <style>
+            
+        </style> 
+    {% endblock %}
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+
+        {% endblock %}
+    </title>
+</head>
+<body>
+    <header>
+        {% block header %}
+        
+        {% endblock %}
+    </header>
+    <main>
+        {% block content %}
+        <!-- Nội dung riêng của từng trang sẽ hiển thị tại đây -->
+        {% endblock %}
+    </main>
+
+</body>
+</html>
