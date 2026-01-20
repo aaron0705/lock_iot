@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+
+{% block style %}
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block title%}
+    Xóa thiết bị
+{% endblock %}
+
+{% block header%}
+    Xóa thiết bị
+{% endblock %}
+
+{% block content %}
+    <script>
+    </script>
+    <div id="form_container">
+        {% csrf_token %}
+        <form method="POST">
+            <div>
+                <label>Tìm thiết bị</label>
+                <input type="text" name="Tìm thiết bị" required>
+            </div>
+            <button type="submit">Thêm thiết bị</button>
+        </form>
+        <div>
+            {% if alert_msg %}
+                <p><strong>Lỗi:</strong> {{ alert_msg }}</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

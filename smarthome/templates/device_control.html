@@ -1,2 +1,130 @@
+<<<<<<< HEAD
 {% extend "index.html" %}
 
+=======
+{% extends "index.html" %}
+
+{% block header %}{% endblock %}
+
+{# --- PHẦN 1: STYLE (CSS) - Đưa ra ngoài block content --- #}
+{% block style %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- 1. Cấu hình Layout chung --- */
+        body {
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex; /* Giúp sidebar và content nằm ngang hàng nhau (nếu cần) */
+        }
+
+        /* --- 2. Sidebar (Cố định bên trái) --- */
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 60px; /* Thu nhỏ mặc định */
+            background-color: #2c3e50;
+            transition: width 0.3s;
+            z-index: 1000;
+            overflow: hidden;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+        }
+        
+        #sidebar:hover {
+            width: 250px; /* Mở rộng khi hover */
+        }
+
+        .sidebar-header {
+            color: white; padding: 15px; text-align: center; font-weight: bold; white-space: nowrap;
+        }
+
+        .menu-list { list-style: none; padding: 0; margin: 0; }
+        .menu-list li a {
+            display: flex; align-items: center; padding: 15px; color: white; text-decoration: none;
+            white-space: nowrap; /* Giữ chữ trên 1 dòng */
+        }
+        .menu-list li a:hover { background-color: #34495e; }
+        .menu-list i { min-width: 30px; font-size: 20px; text-align: center; }
+        .menu-list .text { margin-left: 10px; opacity: 0; transition: 0.2s; }
+        #sidebar:hover .text { opacity: 1; }
+
+        /* --- 3. Nội dung chính (Đẩy sang phải để tránh Sidebar) --- */
+        .main-wrapper {
+            margin-left: 80px; /* Cách lề trái để không bị Sidebar che */
+            width: 100%;
+            padding: 20px;}
+
+        .menu-list {
+            list-style: none;      /* Xóa dấu chấm đầu dòng */
+            padding: 0;
+            margin: 0;
+            background-color: #2c3e50; /* Đồng bộ màu với sidebar */
+            width: 250px;          /* Độ rộng mẫu, bạn có thể chỉnh lại */
+        }
+
+        /* Từng mục trong danh sách */
+        .menu-list li {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Đường kẻ mờ phân cách */
+            transition: all 0.3s ease; /* Hiệu ứng mượt mà */
+        }
+
+        /* Thẻ link bên trong li */
+        .menu-list li a {
+            display: block;
+            padding: 12px 20px;
+            color: #bdc3c7;         /* Màu chữ bạc nhẹ, không bị chói */
+            text-decoration: none;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Hiệu ứng khi di chuột vào (Hover) */
+        .menu-list li:hover {
+            background-color: #34495e; /* Màu sáng hơn một chút để tạo chiều sâu */
+            padding-left: 10px;        /* Hiệu ứng trượt sang phải nhẹ */
+        }
+
+        .menu-list li a:hover {
+            color: #ffffff;            /* Chữ trắng hẳn khi hover */
+        }
+
+        /* Mục đang được chọn (Active) - Tùy chọn */
+        .menu-list li.active {
+            background-color: #1abc9c; /* Màu xanh ngọc tạo điểm nhấn trang trọng */
+            border-left: 4px solid #16a085;
+        }
+
+        .menu-list li.active a {
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+{% endblock %}
+
+{# --- PHẦN 2: NỘI DUNG CHÍNH --- #}
+{% block content %}
+    
+    <nav id="sidebar">
+        <ul class="menu-list">
+            <li><a href="{% url 'dashboard_app:dashboard' %}"><i class="fa-solid fa-house"></i><span class="text">Trang chủ</span></a></li>
+            <li><a href="{% url 'device_control_app:device_control' %}"><i class="fa-solid fa-microchip"></i><span class="text">Thiết bị</span></a></li>
+            <li><a href="{% url 'log_app:log_out' %}"><i class="fa-solid fa-right-from-bracket"></i><span class="text">Đăng xuất</span></a></li>
+        </ul>
+    </nav>
+
+    <div class="main-wrapper">
+        {% if devices %}
+            {% for device in devices %}
+                <ul class="menu-list">
+                    <li id="{{ device.id }}"><a href="{% url 'device_control_app:detail' device.id %}">{{ device.name }}</a></li>
+                </ul>
+            {% endfor %}
+        {% else %}
+            <strong>Nhà chưa có thiết bị thông minh nào</strong>
+        {% endif %}
+    </div>
+{% endblock %}
+>>>>>>> a02b74048eed94e2825a54c58349d894719e27c2

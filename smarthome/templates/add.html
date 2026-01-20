@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 {% extend index.html %}
+=======
+{% extends 'index.html' %}
+>>>>>>> a02b74048eed94e2825a54c58349d894719e27c2
 
 {% block style %}
     <style>
@@ -15,6 +19,7 @@
 {% endblock %}
 
 {% block content %}
+<<<<<<< HEAD
     <script>
         alert_msg = {{ alert_msg }};
         alert(alert_msg);
@@ -33,6 +38,23 @@
                 <label>Vị trí</label>
                 <select>
                     <option></option>
+=======
+    <div id="form_container">
+        <form method="POST">
+            {% csrf_token %}
+            <div>
+                <label>Tên thiết bị</label>
+                <input type="text" name="name" required>
+            </div>
+            <div>
+                <label>Loại thiết bị</label>
+                <input type="text" name="type" required>
+            </div>
+            <div>
+                <label>Vị trí</label>
+                <select name="location" required>
+                    <option value="door">Cửa</option>
+>>>>>>> a02b74048eed94e2825a54c58349d894719e27c2
                 </select>
             </div>
             <div>
