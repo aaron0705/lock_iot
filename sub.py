@@ -5,6 +5,7 @@ from Crypto.Cipher import AES
 from Crypto.Util.Padding import unpad
 import mysql.connector
 
+
 key = b"1234567890123456"
 iv = b"1234567890123456"
 topic = "pi/smarthome"
@@ -51,12 +52,6 @@ def save_event(json_message):
     cursor.close()
     cnx.close()
 
-def is_json(my_str): 
-    try: 
-        json.loads(my_str) # thử parse chuỗi 
-        return True 
-    except ValueError: 
-        return False
 
 def on_message(client, userdata, message):
     print("Message received: ", message.payload)

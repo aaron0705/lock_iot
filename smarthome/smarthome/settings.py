@@ -25,9 +25,17 @@ SECRET_KEY = 'django-insecure-r(7d@ol7eeb)#2^2(g%xilv58@yr95q_*i3x!1vb#tu^zkta_b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost',
+    '127.0.0.1',
+    'unsupportedly-beefless-demetrius.ngrok-free.app',
+    'unsupportedly-beefless-demetrius.ngrok-free.dev']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://unsupportedly-beefless-demetrius.ngrok-free.dev', 
+    'https://unsupportedly-beefless-demetrius.ngrok-free.app'
+]
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Application definition
 
 INSTALLED_APPS = [

@@ -1,4 +1,4 @@
-{% extend index.html %}
+{% extends 'index.html' %}
 
 {% block style %}
     <style>
@@ -15,24 +15,21 @@
 {% endblock %}
 
 {% block content %}
-    <script>
-        alert_msg = {{ alert_msg }};
-        alert(alert_msg);
-    </script>
     <div id="form_container">
-        <form>
+        <form method="POST">
+            {% csrf_token %}
             <div>
                 <label>Tên thiết bị</label>
-                <input type="text" name="Tên thiết bị" required>
+                <input type="text" name="name" required>
             </div>
             <div>
                 <label>Loại thiết bị</label>
-                <input type="text" name="Loại thiết bị" required>
+                <input type="text" name="type" required>
             </div>
             <div>
                 <label>Vị trí</label>
-                <select>
-                    <option></option>
+                <select name="location" required>
+                    <option value="door">Cửa</option>
                 </select>
             </div>
             <div>
